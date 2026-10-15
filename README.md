@@ -29,3 +29,7 @@ js/components/        UI components
 ## Known issues
 
 - `useContainerWidth` never attaches its ref, so the stage is always 600px wide and doesn't resize.
+
+## License
+
+[MIT](LICENSE)
