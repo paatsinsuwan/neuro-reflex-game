@@ -2,11 +2,11 @@ import { jsx, jsxs, useMemo, d3 } from '../vendor.js';
 import { STROOP_COLORS } from '../constants.js';
 
 // Line chart of the last 12 response times (green = correct, red = wrong).
-export function ResponseChart({ width, height, isMobile, history }) {
+export function ResponseChart({ x, y, width, height, history }) {
   const graphContent = useMemo(() => {
     const margin = { top: 20, right: 20, bottom: 25, left: 45 };
-    const graphWidth = isMobile ? width * 0.4 : width * 0.42;
-    const graphHeight = height * 0.65;
+    const graphWidth = width;
+    const graphHeight = height;
     const dataPoints = history.slice(-12);
     const xScale = d3.scaleLinear().domain([0, Math.max(5, dataPoints.length - 1)]).range([margin.left, graphWidth - margin.right]);
     const yScale = d3.scaleLinear().domain([0, 2e3]).range([graphHeight - margin.bottom, margin.top]);
@@ -29,9 +29,9 @@ export function ResponseChart({ width, height, isMobile, history }) {
       graphWidth,
       graphHeight
     };
-  }, [history, width, height, isMobile]);
+  }, [history, width, height]);
 
-  return /* @__PURE__ */ jsxs("g", { transform: `translate(${width * (isMobile ? 0.54 : 0.52)}, 0)`, children: [
+  return /* @__PURE__ */ jsxs("g", { transform: `translate(${x}, ${y})`, children: [
     graphContent.yTicks.map((tick, i) => /* @__PURE__ */ jsx(
       "line",
       {

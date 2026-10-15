@@ -1,10 +1,15 @@
 import { jsx, jsxs } from '../vendor.js';
 import { TimerRing } from './TimerRing.js';
 import { ResponseChart } from './ResponseChart.js';
+import { getStageLayout } from './stageLayout.js';
+
+const px = (n) => `${n}px`;
 
 // Dark top panel: play/pause control, countdown ring, stimulus word,
 // current objective label, and response-time chart.
-export function StimulusMonitor({ width, height, isMobile, isPlaying, onTogglePlaying, taskMode, currentWord, currentInk, feedback, timeLeftPercent, history }) {
+export function StimulusMonitor({ width, isPlaying, onTogglePlaying, taskMode, currentWord, currentInk, feedback, timeLeftPercent, history }) {
+  const layout = getStageLayout(width);
+  const { height, divider, ring, objective, stimulus, chart } = layout;
   return /* @__PURE__ */ jsxs("div", { className: "relative w-full overflow-hidden border-b border-border bg-[#0b0f19] select-none", children: [
     /* @__PURE__ */ jsx("div", { className: "absolute top-0 right-0 p-3 z-10 flex items-center justify-end pointer-events-none", children: /* @__PURE__ */ jsx(
       "button",
@@ -18,18 +23,18 @@ export function StimulusMonitor({ width, height, isMobile, isPlaying, onTogglePl
       }
     ) }),
     /* @__PURE__ */ jsxs("svg", { viewBox: `0 0 ${width} ${height}`, width, height, role: "img", "aria-label": "Stroop task interaction monitor displaying cognitive performance profile charts and reaction speeds", children: [
-      /* @__PURE__ */ jsx("g", { opacity: "0.15", children: /* @__PURE__ */ jsx("line", { x1: width * 0.5, y1: "0", x2: width * 0.5, y2: height, stroke: "#fff", strokeWidth: "1", strokeDasharray: "4,4" }) }),
-      /* @__PURE__ */ jsx(TimerRing, { width, height, isMobile, timeLeftPercent }),
-      /* @__PURE__ */ jsx(ResponseChart, { width, height, isMobile, history })
+      /* @__PURE__ */ jsx("g", { opacity: "0.15", children: /* @__PURE__ */ jsx("line", { ...divider, stroke: "#fff", strokeWidth: "1", strokeDasharray: "4,4" }) }),
+      /* @__PURE__ */ jsx(TimerRing, { ...ring, timeLeftPercent }),
+      /* @__PURE__ */ jsx(ResponseChart, { ...chart, history })
     ] }),
     /* @__PURE__ */ jsxs(
       "div",
       {
         className: "absolute text-center bg-card/60 backdrop-blur-xs rounded-lg p-2 border border-border/10 text-white pointer-events-none",
         style: {
-          left: `${width * 0.08}px`,
-          top: `${height * 0.08}px`,
-          width: `${width * (isMobile ? 0.36 : 0.34)}px`
+          left: px(objective.left),
+          top: px(objective.top),
+          width: px(objective.width)
         },
         children: [
           /* @__PURE__ */ jsx("div", { className: "text-[10px] tracking-wider text-slate-400 font-medium uppercase", children: "Current Objective" }),
@@ -42,10 +47,10 @@ export function StimulusMonitor({ width, height, isMobile, isPlaying, onTogglePl
       {
         className: "absolute flex flex-col items-center justify-center pointer-events-none",
         style: {
-          left: `${width * (isMobile ? 0.07 : 0.08)}px`,
-          top: `${height * 0.28}px`,
-          width: `${width * (isMobile ? 0.38 : 0.34)}px`,
-          height: `${height * 0.44}px`
+          left: px(stimulus.left),
+          top: px(stimulus.top),
+          width: px(stimulus.width),
+          height: px(stimulus.height)
         },
         children: [
           /* @__PURE__ */ jsx(

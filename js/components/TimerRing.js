@@ -1,10 +1,9 @@
 import { jsx, jsxs } from '../vendor.js';
 
 // Circular countdown for the current trial; turns red under 30% remaining.
-export function TimerRing({ width, height, isMobile, timeLeftPercent }) {
-  const r = Math.min(width, height) * 0.24;
+export function TimerRing({ cx, cy, r, timeLeftPercent }) {
   const circumference = 2 * Math.PI * r;
-  return /* @__PURE__ */ jsxs("g", { transform: `translate(${width * (isMobile ? 0.26 : 0.25)}, ${height * 0.5})`, children: [
+  return /* @__PURE__ */ jsxs("g", { transform: `translate(${cx}, ${cy})`, children: [
     /* @__PURE__ */ jsx("circle", { cx: "0", cy: "0", r, fill: "#111827", stroke: "#1f2937", strokeWidth: "6" }),
     /* @__PURE__ */ jsx(
       "circle",

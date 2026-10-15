@@ -16,16 +16,12 @@ const DIFFICULTY_OPTIONS = [
 ];
 
 export function StroopGameWidget() {
-  const { width } = useContainerWidth();
-  const height = width * 0.52;
-  const isMobile = width < 600;
+  const { containerRef, width } = useContainerWidth();
   const game = useStroopGame();
 
-  return /* @__PURE__ */ jsxs("div", { className: "w-full bg-card text-foreground font-sans selection:bg-primary/20 flex flex-col", children: [
+  return /* @__PURE__ */ jsxs("div", { ref: containerRef, className: "w-full bg-card text-foreground font-sans selection:bg-primary/20 flex flex-col", children: [
     /* @__PURE__ */ jsx(StimulusMonitor, {
       width,
-      height,
-      isMobile,
       isPlaying: game.isPlaying,
       onTogglePlaying: game.togglePlaying,
       taskMode: game.taskMode,

@@ -1,4 +1,4 @@
-# Neuro Reflex – Stroop Task
+# Neuro Reflex
 
 A browser reaction game based on the Stroop effect: press the color that matches either the word's ink color or the written word, before the timer runs out.
 
@@ -18,17 +18,14 @@ No build step. React, Radix Toggle Group and d3 are imported as ES modules from 
 
 ```
 index.html            page shell
-css/styles.css        compiled Tailwind styles
+css/styles.css        compiled Tailwind styles (game)
+css/site.css          site shell: header, intro, how-to-play, footer
 js/main.js            entry point
 js/vendor.js          third-party imports
 js/constants.js       colors, trial timing, scoring
 js/hooks/             useStroopGame (game logic), useContainerWidth
 js/components/        UI components
 ```
-
-## Known issues
-
-- `useContainerWidth` never attaches its ref, so the stage is always 600px wide and doesn't resize.
 
 ## License
 

@@ -1,0 +1,135 @@
+/* Site shell around the game. Colors come from the theme variables in styles.css. */
+
+/* The gstatic theme stylesheet sets html { overflow: hidden } for embedded widgets. */
+html {
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+.site-header,
+.site-footer {
+  border-color: var(--color-border);
+  border-style: solid;
+  border-width: 0;
+}
+
+.site-header {
+  border-bottom-width: 1px;
+}
+
+.site-header__inner,
+.site-main,
+.site-footer__inner {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.site-brand .material-icons {
+  color: var(--color-primary);
+}
+
+.site-nav a,
+.site-footer a {
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-footer a:hover {
+  color: var(--color-foreground);
+}
+
+.site-nav a {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.site-main {
+  flex: 1;
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+.site-intro h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.site-intro p {
+  margin: 0 0 24px;
+  color: var(--color-muted-foreground);
+  line-height: 1.5;
+}
+
+.game-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.how-to-play {
+  margin-top: 32px;
+}
+
+.how-to-play h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.how-to-play ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-muted-foreground);
+  line-height: 1.6;
+}
+
+.how-to-play strong {
+  color: var(--color-foreground);
+  font-weight: 500;
+}
+
+.site-footer {
+  border-top-width: 1px;
+  font-size: 13px;
+  color: var(--color-muted-foreground);
+}
+
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
